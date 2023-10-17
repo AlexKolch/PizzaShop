@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct Position {
+struct Position: Identifiable {
+
     var product: Product
     var id: String
     var count: Int

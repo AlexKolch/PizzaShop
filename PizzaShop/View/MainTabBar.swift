@@ -19,7 +19,7 @@ struct MainTabBar: View {
                 Text("Каталог")
             }
 
-            CartView(viewModel: CartViewModel())
+            CartView(viewModel: CartViewModel.shared)
                 .tabItem {
                     Image(systemName: "cart")
                     Text("Корзина")
