@@ -27,7 +27,21 @@ class AuthServices {
         auth.createUser(withEmail: email, password: password) { result, error in
 
             if let result {
-                completion(.success(result.user)) //Юзер из базы данных приходит
+                let newUser = UserModel(id: result.user.uid, //в id передаем id из БД
+                                        name: "",
+                                        phoneNumber: 8,
+                                        address: "") //берем нового юзера и кладем в БД
+
+                DatabaseService.shared.setUser(user: newUser) { resultDB in
+                    switch resultDB {
+
+                    case .success(_):
+                        completion(.success(result.user)) //Зареганный юзер из БД
+
+                    case .failure(let failure):
+                        completion(.failure(failure))
+                    }
+                }
             } else if let error {
                 completion(.failure(error))
             }

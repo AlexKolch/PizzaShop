@@ -12,6 +12,8 @@ struct ProfileView: View {
     @State private var isAvatarPresented = false
     @State private var isQuitAlertPresented = false
     @State private var isAuthViewPresented = false
+
+    @StateObject var profileViewModel: ProfileViewModel
     
     var body: some View {
 
@@ -39,14 +41,18 @@ struct ProfileView: View {
                     }
 
                 VStack(alignment: .leading, spacing: 10.0) {
-                    Text("Мирослав Филиппецкий").bold()
-                    Text("+7 (999) 111-22-33")
+                    TextField("Имя", text: $profileViewModel.userProfile.name).font(.body.bold())
+                    HStack {
+                        Text("+7")
+                        TextField("Телефон", value: $profileViewModel.userProfile.phoneNumber, format: .number)
+                    }
                 }
-            }
+            }.padding()
+
             VStack(alignment: .leading, spacing: 8) {
                 Text("Адрес доставки: ").bold()
-                Text("Россия, Московская область, г. Нижний Уренгой, ул, Юных Юннатов, д. 35, кв. 18")
-            }
+                TextField("Ваш адрес", text: $profileViewModel.userProfile.address)
+            }.padding(.horizontal)
 
             //Таблица с заказами
             List {
@@ -65,16 +71,27 @@ struct ProfileView: View {
                         Text("Да")
                     }
                 }
+                .fullScreenCover(isPresented: $isAuthViewPresented) {
+                    AuthView()
+                }
 
-        }.fullScreenCover(isPresented: $isAuthViewPresented) {
-            AuthView()
-
+        }
+        //On Submit
+        .onSubmit {
+            print("On Submit: Было редактирование")
+            profileViewModel.setProfile()
+        }
+        .onAppear {
+            self.profileViewModel.getProfile()
         }
     }
 }
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView()
+        ProfileView(profileViewModel: ProfileViewModel(userProfile: UserModel(id: "",
+                                                                 name: "Вася Иванов",
+                                                                 phoneNumber: 45658568568,
+                                                                 address: "Хрен доедешь")))
     }
 }

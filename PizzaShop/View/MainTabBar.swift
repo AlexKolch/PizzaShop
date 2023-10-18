@@ -28,7 +28,7 @@ struct MainTabBar: View {
                     Text("Корзина")
                 }
 
-            ProfileView()
+            ProfileView(profileViewModel: ProfileViewModel(userProfile: UserModel(id: "", name: "", phoneNumber: 0000000000, address: "")))
                 .tabItem {
                     Image(systemName: "person.circle")
                     Text("Профиль")

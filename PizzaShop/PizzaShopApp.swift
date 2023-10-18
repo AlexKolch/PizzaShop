@@ -18,7 +18,13 @@ struct PizzaShopApp: App {
 
     var body: some Scene {
         WindowGroup {
-            AuthView()
+            if let user = AuthServices.shared.currentUser {
+                let viewmodel = MainTabBarViewModel(user: user)
+
+                MainTabBar(viewModel: viewmodel)
+            } else {
+                AuthView()
+            }
         }
     }
 
