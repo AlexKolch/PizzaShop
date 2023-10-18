@@ -52,7 +52,16 @@ struct AuthView: View {
                 Button {
                     if isAuth {
                         print("Авторизация пользователя через Firebase")
-                        self.isTabViewShow.toggle()
+
+                        AuthServices.shared.signIn(email: self.email, password: self.password) { result in
+                            switch result {
+                            case .success(_):
+                                self.isTabViewShow.toggle()
+                            case .failure(let error):
+                                alertMessage = "Ошибка авторизации: \(error.localizedDescription)"
+                                self.isAlertShow.toggle()
+                            }
+                        }
                     } else {
                         ///Проверка повторного пароля
                         guard password == repeatPassword else {
@@ -118,7 +127,9 @@ struct AuthView: View {
             .blur(radius: isAuth ? 0 : 8))
             .animation(.easeInOut(duration: 0.3), value: isAuth)
             .fullScreenCover(isPresented: $isTabViewShow) {
-                MainTabBar()
+                let mainTabBarViewModel = MainTabBarViewModel(user: AuthServices.shared.currentUser!)
+
+                MainTabBar(viewModel: mainTabBarViewModel)
             }
 
     }

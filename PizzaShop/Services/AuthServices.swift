@@ -15,19 +15,33 @@ class AuthServices {
 
     private let auth = Auth.auth() //Ссылка на авторизацию в сервисе
 
-    private var currentUser: User? {
+    var currentUser: User? {
         return auth.currentUser //Возвращает юзера
     }
 
-///Регистрация пользователя
+    ///Регистрация пользователя
     func signUp(email: String,
                 password: String,
                 completion: @escaping (Result<User, Error>) -> Void) {
-
+        
         auth.createUser(withEmail: email, password: password) { result, error in
 
             if let result {
                 completion(.success(result.user)) //Юзер из базы данных приходит
+            } else if let error {
+                completion(.failure(error))
+            }
+        }
+    }
+
+    ///Авторизация пользователя
+    func signIn(email: String,
+                password: String,
+                completion: @escaping (Result<User, Error>) -> Void) {
+
+        auth.signIn(withEmail: email, password: password) { result, error in
+            if let result {
+                completion(.success(result.user))
             } else if let error {
                 completion(.failure(error))
             }

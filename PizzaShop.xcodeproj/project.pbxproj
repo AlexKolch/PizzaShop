@@ -18,6 +18,7 @@
 		FC406EB02ADEDBAD007EF4B0 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = FC406EAF2ADEDBAD007EF4B0 /* FirebaseFirestore */; };
 		FC406EB22ADEDBAD007EF4B0 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = FC406EB12ADEDBAD007EF4B0 /* FirebaseStorage */; };
 		FC406EB42ADEE036007EF4B0 /* AuthServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC406EB32ADEE036007EF4B0 /* AuthServices.swift */; };
+		FC406EB72ADFF244007EF4B0 /* MainTabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC406EB62ADFF244007EF4B0 /* MainTabBarViewModel.swift */; };
 		FC4AE51A2ADA693E00CAF2EF /* MainTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4AE5192ADA693E00CAF2EF /* MainTabBar.swift */; };
 		FC4AE51C2ADA6C9900CAF2EF /* CatalogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4AE51B2ADA6C9900CAF2EF /* CatalogView.swift */; };
 		FC4AE51F2ADA6D0A00CAF2EF /* CartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4AE51E2ADA6D0A00CAF2EF /* CartView.swift */; };
@@ -39,6 +40,7 @@
 		FC406EA82ADD743A007EF4B0 /* PositionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionCell.swift; sourceTree = "<group>"; };
 		FC406EAA2ADED364007EF4B0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FC406EB32ADEE036007EF4B0 /* AuthServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServices.swift; sourceTree = "<group>"; };
+		FC406EB62ADFF244007EF4B0 /* MainTabBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewModel.swift; sourceTree = "<group>"; };
 		FC4AE5192ADA693E00CAF2EF /* MainTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBar.swift; sourceTree = "<group>"; };
 		FC4AE51B2ADA6C9900CAF2EF /* CatalogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogView.swift; sourceTree = "<group>"; };
 		FC4AE51E2ADA6D0A00CAF2EF /* CartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartView.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 				FC406E9D2ADAA6CD007EF4B0 /* CatalogViewModel.swift */,
 				FC406EA22ADBDAD2007EF4B0 /* ProductDetailViewModel.swift */,
 				FC406EA42ADD5BEA007EF4B0 /* CartViewModel.swift */,
+				FC406EB62ADFF244007EF4B0 /* MainTabBarViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -235,6 +238,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC406EB42ADEE036007EF4B0 /* AuthServices.swift in Sources */,
+				FC406EB72ADFF244007EF4B0 /* MainTabBarViewModel.swift in Sources */,
 				FC406EA52ADD5BEA007EF4B0 /* CartViewModel.swift in Sources */,
 				FC4AE51F2ADA6D0A00CAF2EF /* CartView.swift in Sources */,
 				FC406EA12ADAB4BB007EF4B0 /* ProductDetailView.swift in Sources */,
