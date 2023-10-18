@@ -17,6 +17,7 @@
 		FC406EAE2ADEDBAD007EF4B0 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = FC406EAD2ADEDBAD007EF4B0 /* FirebaseAuth */; };
 		FC406EB02ADEDBAD007EF4B0 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = FC406EAF2ADEDBAD007EF4B0 /* FirebaseFirestore */; };
 		FC406EB22ADEDBAD007EF4B0 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = FC406EB12ADEDBAD007EF4B0 /* FirebaseStorage */; };
+		FC406EB42ADEE036007EF4B0 /* AuthServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC406EB32ADEE036007EF4B0 /* AuthServices.swift */; };
 		FC4AE51A2ADA693E00CAF2EF /* MainTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4AE5192ADA693E00CAF2EF /* MainTabBar.swift */; };
 		FC4AE51C2ADA6C9900CAF2EF /* CatalogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4AE51B2ADA6C9900CAF2EF /* CatalogView.swift */; };
 		FC4AE51F2ADA6D0A00CAF2EF /* CartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4AE51E2ADA6D0A00CAF2EF /* CartView.swift */; };
@@ -37,6 +38,7 @@
 		FC406EA62ADD5C41007EF4B0 /* Position.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
 		FC406EA82ADD743A007EF4B0 /* PositionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionCell.swift; sourceTree = "<group>"; };
 		FC406EAA2ADED364007EF4B0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		FC406EB32ADEE036007EF4B0 /* AuthServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServices.swift; sourceTree = "<group>"; };
 		FC4AE5192ADA693E00CAF2EF /* MainTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBar.swift; sourceTree = "<group>"; };
 		FC4AE51B2ADA6C9900CAF2EF /* CatalogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogView.swift; sourceTree = "<group>"; };
 		FC4AE51E2ADA6D0A00CAF2EF /* CartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartView.swift; sourceTree = "<group>"; };
@@ -83,6 +85,14 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		FC406EB52ADEE03A007EF4B0 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				FC406EB32ADEE036007EF4B0 /* AuthServices.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		FC4AE51D2ADA6CAA00CAF2EF /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -126,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				FC728EC52AD98B460004DBE3 /* PizzaShopApp.swift */,
+				FC406EB52ADEE03A007EF4B0 /* Services */,
 				FC406E9C2ADAA6BB007EF4B0 /* Model */,
 				FC406E9F2ADAA6F3007EF4B0 /* ViewModel */,
 				FC4AE5222ADA7B5E00CAF2EF /* View */,
@@ -223,6 +234,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC406EB42ADEE036007EF4B0 /* AuthServices.swift in Sources */,
 				FC406EA52ADD5BEA007EF4B0 /* CartViewModel.swift in Sources */,
 				FC4AE51F2ADA6D0A00CAF2EF /* CartView.swift in Sources */,
 				FC406EA12ADAB4BB007EF4B0 /* ProductDetailView.swift in Sources */,

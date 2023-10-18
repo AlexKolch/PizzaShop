@@ -13,6 +13,8 @@ struct AuthView: View {
     @State private var password = ""
     @State private var repeatPassword = ""
     @State private var isTabViewShow = false
+    @State private var isAlertShow = false
+    @State private var alertMessage = ""
 
     var body: some View {
         VStack(spacing: 20.0) {
@@ -52,11 +54,31 @@ struct AuthView: View {
                         print("Авторизация пользователя через Firebase")
                         self.isTabViewShow.toggle()
                     } else {
-                        print("Регистрация пользователя")
-                        self.email = ""
-                        self.password = ""
-                        self.repeatPassword = ""
-                        self.isAuth.toggle()
+                        ///Проверка повторного пароля
+                        guard password == repeatPassword else {
+                            self.alertMessage = "Пароли не совпадают!"
+                            self.isAlertShow.toggle()
+                            return
+                        }
+
+                        AuthServices.shared.signUp(email: self.email, password: self.password) { result in
+                            switch result {
+                            case .success(let user):
+
+                                alertMessage = "Вы зарегистрировались с email: \(user.email!)"
+                                self.isAlertShow.toggle()
+                                print("Регистрация пользователя")
+                                self.email = ""
+                                self.password = ""
+                                self.repeatPassword = ""
+                                self.isAuth.toggle()
+
+                            case .failure(let error):
+
+                                alertMessage = "Ошибка регистрации: \(error.localizedDescription)"
+                                self.isAlertShow.toggle()
+                            }
+                        }
                     }
                 } label: {
                     Text(isAuth ? "Войти" : "Создать аккаунт")
@@ -85,6 +107,11 @@ struct AuthView: View {
             }.padding().padding(.top, 16).background(Color.secondary.opacity(0.5))
                 .cornerRadius(24)
                 .padding(isAuth ? 30 : 16)
+                .alert(alertMessage, isPresented: $isAlertShow) {
+                    Button { } label: {
+                        Text("Ok")
+                    }
+                }
 
         }.frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Image("bg")
