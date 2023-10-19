@@ -13,6 +13,7 @@ struct UserModel: Identifiable {
     var phoneNumber: Int
     var address: String
 
+    ///Для отправки в БД
     var representation: [String : Any] {
 
         var repres = [String : Any]()

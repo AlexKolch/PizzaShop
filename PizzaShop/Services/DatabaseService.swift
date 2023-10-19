@@ -15,8 +15,43 @@ class DatabaseService {
     private var userRef: CollectionReference { //ссылка на коллекцию наших юзеров
         return database.collection("users")
     }
+    private var ordersRef: CollectionReference {
+        return database.collection("orders")
+    }
 
     private init() { }
+
+    ///Записать заказ в БД
+    func setOrder(order: Order, completion: @escaping (Result<Order, Error>) -> ()) {
+        ordersRef.document(order.id).setData(order.representation) { error in
+            if let error {
+                completion(.failure(error))
+            } else {
+                self.setPositions(to: order.id, positions: order.positions) { result in
+                    switch result {
+                    case .success(let positions):
+                        print("Добавлена/о \(positions.count) позиция/ий")
+                        completion(.success(order)) //Добавляем заказ после успешного добавления всех позиций
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                    }
+                }
+            }
+        }
+    }
+    ///Устанавить позиции а заказ
+    func setPositions(to orderId: String,
+                      positions: [Position],
+                      completion: @escaping (Result<[Position], Error>) -> ()) {
+
+        let positionRef = ordersRef.document(orderId).collection("positions") //реф на позиции которые будут внутри ordersRef
+
+        for position in positions {
+            positionRef.document(position.id).setData(position.representation) //Запись в реф данных по каждой позиции
+        }
+
+        completion(.success(positions))
+    }
 
     ///Записать юзера в БД
     func setUser(user: UserModel, completion: @escaping (Result<UserModel, Error>) -> ()) {

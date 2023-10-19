@@ -49,6 +49,20 @@ struct CartView: View {
 
                 Button {
                     print("Заказать")
+
+                    var order = Order(userID: AuthServices.shared.currentUser!.uid,
+                                      date: Date(), //Текущая дата
+                                      status: OrderStatus.new.rawValue)
+                    order.positions = viewModel.positions
+
+                    DatabaseService.shared.setOrder(order: order) { result in
+                        switch result {
+                        case .success(let order):
+                            print("Заказано на \(order.cost) ₽")
+                        case .failure(let error):
+                            print(error.localizedDescription)
+                        }
+                    }
                 } label: {
                     Text("Заказать")
                         .fontWeight(.bold)
