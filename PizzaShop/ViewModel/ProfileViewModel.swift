@@ -10,9 +10,23 @@ import Foundation
 class ProfileViewModel: ObservableObject {
 
     @Published var userProfile: UserModel
+    @Published var orders = [Order]() //массив заказов юзера
 
     init(userProfile: UserModel) {
         self.userProfile = userProfile
+    }
+
+    ///Получить заказы
+    func getOrders() {
+        DatabaseService.shared.getOrders(by: AuthServices.shared.currentUser?.uid) { result in
+            switch result {
+            case .success(let orders):
+                self.orders = orders
+                print("Всего заказов: \(orders.count)")
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
 
     func setProfile() {

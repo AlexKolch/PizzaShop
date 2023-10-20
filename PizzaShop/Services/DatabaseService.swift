@@ -21,6 +21,31 @@ class DatabaseService {
 
     private init() { }
 
+    ///Получить заказы из БД
+    func getOrders(by userID: String?, completion: @escaping (Result<[Order], Error>) -> ()) {
+        self.ordersRef.getDocuments { qSnapshot, error in
+            if let qSnapshot {
+                var orders = [Order]()
+                for doc in qSnapshot.documents {
+                    if let userID = userID {
+//Если userID получен, то получаем заказы только по этому userID
+                        if let order = Order(doc: doc), order.userID == userID {
+                            orders.append(order)
+                        }
+//Если без userID получаем все заказы из БД (для админа)
+                    } else {
+                        if let order = Order(doc: doc) {
+                            orders.append(order)
+                        }
+                    }
+                }
+                completion(.success(orders))
+            } else if let error {
+                completion(.failure(error))
+            }
+        }
+    }
+
     ///Записать заказ в БД
     func setOrder(order: Order, completion: @escaping (Result<Order, Error>) -> ()) {
         ordersRef.document(order.id).setData(order.representation) { error in
@@ -39,7 +64,7 @@ class DatabaseService {
             }
         }
     }
-    ///Устанавить позиции а заказ
+    ///Установить позиции в заказ
     func setPositions(to orderId: String,
                       positions: [Position],
                       completion: @escaping (Result<[Position], Error>) -> ()) {
