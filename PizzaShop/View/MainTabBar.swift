@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct MainTabBar: View {
+
+    var viewModel: MainTabBarViewModel
+
     var body: some View {
         TabView {
 
@@ -19,13 +22,13 @@ struct MainTabBar: View {
                 Text("Каталог")
             }
 
-           CartView()
+            CartView(viewModel: CartViewModel.shared)
                 .tabItem {
                     Image(systemName: "cart")
                     Text("Корзина")
                 }
 
-            ProfileView()
+            ProfileView(viewModel: ProfileViewModel(userProfile: UserModel(id: "", name: "", phoneNumber: 0000000000, address: "")))
                 .tabItem {
                     Image(systemName: "person.circle")
                     Text("Профиль")
@@ -35,8 +38,8 @@ struct MainTabBar: View {
     }
 }
 
-struct MainTabBar_Previews: PreviewProvider {
-    static var previews: some View {
-        MainTabBar()
-    }
-}
+//struct MainTabBar_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MainTabBar(viewModel: MainTabBarViewModel(user: User()))
+//    }
+//}
