@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct OrderCell: View {
-    @State var order: Order = Order(userID: "", date: Date(), status: "новый")
+    var order: Order
 
     var body: some View {
         HStack {
@@ -22,8 +22,9 @@ struct OrderCell: View {
     }
 }
 
+
 struct OrderCell_Previews: PreviewProvider {
     static var previews: some View {
-        OrderCell()
+        OrderCell(order: Order.examplePrewiews)
     }
 }

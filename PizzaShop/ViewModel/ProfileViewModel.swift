@@ -22,6 +22,17 @@ class ProfileViewModel: ObservableObject {
             switch result {
             case .success(let orders):
                 self.orders = orders
+//В цикле проходим по каждому заказу и для каждого конкретного заказа по index кладем его позиции заказа взятые по id заказа.
+                for (index, order) in self.orders.enumerated() {
+                    DatabaseService.shared.getPosiitions(by: order.id) { result in
+                        switch result {
+                        case .success(let positions):
+                            self.orders[index].positions = positions //взят один заказ по индексу из массива
+                        case .failure(let error):
+                            print(error.localizedDescription)
+                        }
+                    }
+                }
                 print("Всего заказов: \(orders.count)")
             case .failure(let error):
                 print(error.localizedDescription)

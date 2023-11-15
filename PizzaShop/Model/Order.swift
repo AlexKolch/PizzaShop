@@ -72,3 +72,9 @@ struct Order {
         self.status = status
     }
 }
+
+
+extension Order {
+    ///Нужен для canvas превью
+    static let examplePrewiews = Order(userID: "", date: Date(), status: "новый")
+}
