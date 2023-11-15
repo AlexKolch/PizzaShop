@@ -61,4 +61,9 @@ class AuthServices {
             }
         }
     }
+
+    ///Выход пользователя
+    func signOut() {
+       try! auth.signOut()
+    }
 }

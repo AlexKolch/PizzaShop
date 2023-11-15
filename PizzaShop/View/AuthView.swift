@@ -124,14 +124,17 @@ struct AuthView: View {
 
         }.frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Image("bg")
-            .blur(radius: isAuth ? 0 : 8))
+                .blur(radius: isAuth ? 0 : 8))
             .animation(.easeInOut(duration: 0.3), value: isAuth)
             .fullScreenCover(isPresented: $isTabViewShow) {
-                let mainTabBarViewModel = MainTabBarViewModel(user: AuthServices.shared.currentUser!)
-
-                MainTabBar(viewModel: mainTabBarViewModel)
+                //Проверка что заходит Админ
+                if AuthServices.shared.currentUser?.uid == "qVZgSFB1uSazDM07HTsr5Bq7S0K2" {
+                    AdminOrdersView()
+                } else {
+                    let mainTabBarViewModel = MainTabBarViewModel(user: AuthServices.shared.currentUser!)
+                    MainTabBar(viewModel: mainTabBarViewModel)
+                }
             }
-
     }
 }
 
