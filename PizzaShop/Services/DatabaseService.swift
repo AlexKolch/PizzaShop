@@ -113,9 +113,9 @@ class DatabaseService {
     }
 
     ///Получить юзера из БД
-    func getUser(completion: @escaping (Result<UserModel, Error>) -> ()) {
+    func getUser(by userID: String? = nil, completion: @escaping (Result<UserModel, Error>) -> ()) {
 
-        userRef.document(AuthServices.shared.currentUser!.uid).getDocument { docSnapshot, error in
+        userRef.document(userID != nil ? userID! : AuthServices.shared.currentUser!.uid).getDocument { docSnapshot, error in
             guard let data = docSnapshot?.data() else { return }
 
             guard let userName = data["name"] as? String else { return }
