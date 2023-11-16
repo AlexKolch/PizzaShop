@@ -40,6 +40,7 @@
 		FCC0A5EF2B04D284006D8585 /* OrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC0A5EE2B04D284006D8585 /* OrderViewModel.swift */; };
 		FCC0A5F12B05F21D006D8585 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC0A5F02B05F21D006D8585 /* ImagePicker.swift */; };
 		FCC0A5F32B05FCA0006D8585 /* AddProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC0A5F22B05FCA0006D8585 /* AddProductView.swift */; };
+		FCC0A5F52B06266B006D8585 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC0A5F42B06266B006D8585 /* StorageService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +75,7 @@
 		FCC0A5EE2B04D284006D8585 /* OrderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewModel.swift; sourceTree = "<group>"; };
 		FCC0A5F02B05F21D006D8585 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		FCC0A5F22B05FCA0006D8585 /* AddProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductView.swift; sourceTree = "<group>"; };
+		FCC0A5F42B06266B006D8585 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +121,7 @@
 			children = (
 				FC406EB32ADEE036007EF4B0 /* AuthServices.swift */,
 				FC406EBA2ADFF8D3007EF4B0 /* DatabaseService.swift */,
+				FCC0A5F42B06266B006D8585 /* StorageService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -299,6 +302,7 @@
 				FC4AE51A2ADA693E00CAF2EF /* MainTabBar.swift in Sources */,
 				FC728EC82AD98B460004DBE3 /* AuthView.swift in Sources */,
 				FCC0A5EF2B04D284006D8585 /* OrderViewModel.swift in Sources */,
+				FCC0A5F52B06266B006D8585 /* StorageService.swift in Sources */,
 				FCC0A5F12B05F21D006D8585 /* ImagePicker.swift in Sources */,
 				FC4AE51C2ADA6C9900CAF2EF /* CatalogView.swift in Sources */,
 				FCC0A5E72B04C8CA006D8585 /* AdminOrdersView.swift in Sources */,
