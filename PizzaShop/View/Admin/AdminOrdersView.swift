@@ -11,6 +11,8 @@ struct AdminOrdersView: View {
     @StateObject var viewModel = AdminOrdersViewModel() //иниц сразу т.к. у админа всегда будет одна view model и нам не нужно по разному ее инициализировать
     @State private var isShowOrderView = false
     @State private var isShowAuthView = false
+    @State private var isShowProductView = false
+
     
     var body: some View {
         VStack {
@@ -21,6 +23,15 @@ struct AdminOrdersView: View {
                 } label: {
                     Text("Выход").foregroundColor(.red)
                 }
+                Spacer()
+                Button {
+                    isShowProductView.toggle()
+                } label: {
+                   Text("Добавить товар")
+                }.foregroundColor(.white)
+                    .padding()
+                    .background(Color.green)
+                    .cornerRadius(5)
                 Spacer()
                 Button {
                     viewModel.getOrders()
@@ -45,8 +56,12 @@ struct AdminOrdersView: View {
                     let orderViewModel = OrderViewModel(order: viewModel.currentOrder)
                     OrderView(viewModel: orderViewModel)
             }
-        }.fullScreenCover(isPresented: $isShowAuthView) {
+        }
+        .fullScreenCover(isPresented: $isShowAuthView) {
             AuthView()
+        }
+        .sheet(isPresented: $isShowProductView) {
+            AddProductView()
         }
     }
 }
