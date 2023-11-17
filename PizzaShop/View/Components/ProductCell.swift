@@ -8,15 +8,16 @@
 import SwiftUI
 
 struct ProductCell: View {
+    
     var product: Product
 
     var body: some View {
         VStack(spacing: 3.0) {
-            Image(product.imageUrl).resizable()
+            Image(product.imageUrl)
+                .resizable()
                 .scaledToFill()
                 .frame(minWidth: screen.width * 0.45)
                 .clipped()
-                //.cornerRadius(16)
 
             HStack {
                 Text(product.title)

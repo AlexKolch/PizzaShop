@@ -8,7 +8,7 @@
 import Foundation
 import FirebaseAuth
 
-class AuthServices {
+final class AuthServices {
     static let shared = AuthServices()
 
     private init() {}
@@ -60,5 +60,10 @@ class AuthServices {
                 completion(.failure(error))
             }
         }
+    }
+
+    ///Выход пользователя
+    func signOut() {
+       try! auth.signOut()
     }
 }

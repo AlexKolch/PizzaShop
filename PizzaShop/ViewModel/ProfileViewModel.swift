@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ProfileViewModel: ObservableObject {
+final class ProfileViewModel: ObservableObject {
 
     @Published var userProfile: UserModel
     @Published var orders = [Order]() //массив заказов юзера
