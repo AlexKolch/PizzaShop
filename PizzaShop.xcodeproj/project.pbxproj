@@ -41,6 +41,7 @@
 		FCC0A5F12B05F21D006D8585 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC0A5F02B05F21D006D8585 /* ImagePicker.swift */; };
 		FCC0A5F32B05FCA0006D8585 /* AddProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC0A5F22B05FCA0006D8585 /* AddProductView.swift */; };
 		FCC0A5F52B06266B006D8585 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC0A5F42B06266B006D8585 /* StorageService.swift */; };
+		FCC0A5F72B074ABC006D8585 /* PromotionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC0A5F62B074ABC006D8585 /* PromotionCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +77,7 @@
 		FCC0A5F02B05F21D006D8585 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		FCC0A5F22B05FCA0006D8585 /* AddProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductView.swift; sourceTree = "<group>"; };
 		FCC0A5F42B06266B006D8585 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
+		FCC0A5F62B074ABC006D8585 /* PromotionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				FC4AE5252ADA8D1900CAF2EF /* ProductCell.swift */,
+				FCC0A5F62B074ABC006D8585 /* PromotionCell.swift */,
 				FC406EA82ADD743A007EF4B0 /* PositionCell.swift */,
 				FC406EC02AE2DD30007EF4B0 /* OrderCell.swift */,
 				FCC0A5F02B05F21D006D8585 /* ImagePicker.swift */,
@@ -298,6 +301,7 @@
 				FC4AE51F2ADA6D0A00CAF2EF /* CartView.swift in Sources */,
 				FC406EA12ADAB4BB007EF4B0 /* ProductDetailView.swift in Sources */,
 				FCC0A5EA2B04CB67006D8585 /* AdminOrdersViewModel.swift in Sources */,
+				FCC0A5F72B074ABC006D8585 /* PromotionCell.swift in Sources */,
 				FCC0A5ED2B04D227006D8585 /* OrderView.swift in Sources */,
 				FC4AE51A2ADA693E00CAF2EF /* MainTabBar.swift in Sources */,
 				FC728EC82AD98B460004DBE3 /* AuthView.swift in Sources */,

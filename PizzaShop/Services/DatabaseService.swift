@@ -8,7 +8,7 @@
 import Foundation
 import FirebaseFirestore
 
-class DatabaseService {
+final class DatabaseService {
     static let shared = DatabaseService()
 
     private let database = Firestore.firestore() //Ссылка на базу данных
@@ -154,6 +154,28 @@ class DatabaseService {
             case .failure(let failure):
                 completion(.failure(failure))
             }
+        }
+    }
+    
+    ///Получить из БД продук
+    func getProducts(completion: @escaping (Result<[Product], Error>) -> ()) {
+        self.productsRef.getDocuments { querySnapshot, error in
+            guard let querySnapshot else {
+                if let error {
+                    completion(.failure(error))
+                }
+                return
+            }
+
+            let docs = querySnapshot.documents
+            var products = [Product]()
+
+            for doc in docs {
+                //Тут НУЖНО создать ПРОДУКТ через ДОКУМЕНТ (написать init через QueryDocumentSnapshot для Product)
+                guard let product = Product(doc: doc) else {return}
+                products.append(product)
+            }
+            completion(.success(products))
         }
     }
 }

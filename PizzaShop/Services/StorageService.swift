@@ -33,4 +33,17 @@ final class StorageService {
             completion(.success("Размер полученного изображения \(metadata.size)"))
         }
     }
+
+    ///Загрузить картинку из Storage
+    func downloadProductImage(id: String, completion: @escaping (Result<Data, Error>) -> ()) {
+        productsRef.child(id).getData(maxSize: 2*1024*1024) { data, error in
+            guard let data else {
+                if let error {
+                    completion(.failure(error))
+                }
+                return
+            }
+            completion(.success(data))
+        }
+    }
 }

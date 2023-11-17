@@ -9,21 +9,26 @@ import SwiftUI
 
 struct ProductDetailView: View {
 
-    var viewModel: ProductDetailViewModel
+   @StateObject var viewModel: ProductDetailViewModel
 
     @State var size: Sizes
     @State var count = 1
 
     @Environment(\.dismiss) var dismiss
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.presentationMode) var presentationMode //for ios 14
     
     var body: some View {
         VStack {
             VStack(alignment: .leading) {
-
-                Image(viewModel.product.imageUrl).resizable()
-                    .frame(maxWidth: .infinity, maxHeight: 300)
-
+                if viewModel.product.imageUrl.isEmpty {
+                    Image(uiImage: viewModel.image!)
+                        .resizable()
+                        .frame(maxWidth: .infinity, maxHeight: 300)
+                } else {
+                    Image(viewModel.product.imageUrl)
+                        .resizable()
+                        .frame(maxWidth: .infinity, maxHeight: 300)
+                }
                 HStack {
                     Text("\(viewModel.product.title)").font(.title2.bold())
                     Spacer()
@@ -43,10 +48,9 @@ struct ProductDetailView: View {
 
                 Stepper("Количество \(self.count)", value: $count, in: 1...10)
                     .padding(.horizontal, 84)
-                    .padding(.bottom)
-
+                    .padding(.vertical)
             }
-
+            Spacer()
             Button {
                 print("Добавить в корзину")
 
@@ -69,6 +73,8 @@ struct ProductDetailView: View {
                 .cornerRadius(30)
 
             Spacer()
+        }.onAppear {
+            viewModel.getImage()
         }
     }
 }
