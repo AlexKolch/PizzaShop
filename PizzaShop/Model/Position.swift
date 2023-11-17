@@ -31,15 +31,15 @@ struct Position: Identifiable {
         return repres
     }
 
-    init(product: Product, id: String, count: Int) {
+    init(product: Product, id: String = UUID().uuidString, count: Int) {
         self.id = id
         self.product = product
         self.count = count
     }
 
-    ///Для создания позиции из документа базы данных Firebase
+    ///Для создания продукта из документа бд
     init?(doc: QueryDocumentSnapshot) {
-        let data = doc.data() //Берем данные из документа
+        let data = doc.data() //данные из документа
         ///Из этих данных получаем  эти данные
         guard let id = data["id"] as? String else {return nil}
         guard let title = data["title"] as? String else {return nil}

@@ -8,40 +8,24 @@
 import Foundation
 import FirebaseFirestore
 
-class DatabaseService {
+final class DatabaseService {
     static let shared = DatabaseService()
 
     private let database = Firestore.firestore() //Ссылка на базу данных
-    private var userRef: CollectionReference { //ссылка на коллекцию наших юзеров
+    ///ссылка на коллекцию юзеров
+    private var userRef: CollectionReference {
         return database.collection("users")
     }
+    ///ссылка на коллекцию заказов
     private var ordersRef: CollectionReference {
         return database.collection("orders")
     }
+    ///ссылка на коллекцию продуктов
+    private var productsRef: CollectionReference {
+        return database.collection("products")
+    }
 
     private init() { }
-
-    ///Получить позиции в заказе
-    func getPosiitions(by orderID: String, completion: @escaping (Result<[Position], Error>) -> ()) {
-
-        let positionsRef = ordersRef.document(orderID).collection("positions") //референс на позиции в заказе
-        
-        positionsRef.getDocuments { qSnap, error in
-            if let qSnap {
-                var positions = [Position]()
-
-                for doc in qSnap.documents {
-                    if let position = Position(doc: doc) {
-                        positions.append(position)
-                    }
-                }
-
-                completion(.success(positions))
-            } else if let error {
-                completion(.failure(error))
-            }
-        }
-    }
 
     ///Получить заказы из БД
     func getOrders(by userID: String?, completion: @escaping (Result<[Order], Error>) -> ()) {
@@ -86,6 +70,29 @@ class DatabaseService {
             }
         }
     }
+
+    ///Получить позиции в заказе
+    func getPosiitions(by orderID: String, completion: @escaping (Result<[Position], Error>) -> ()) {
+
+        let positionsRef = ordersRef.document(orderID).collection("positions") //референс на позиции в заказе
+
+        positionsRef.getDocuments { qSnap, error in
+            if let qSnap {
+                var positions = [Position]()
+
+                for doc in qSnap.documents {
+                    if let position = Position(doc: doc) {
+                        positions.append(position)
+                    }
+                }
+
+                completion(.success(positions))
+            } else if let error {
+                completion(.failure(error))
+            }
+        }
+    }
+
     ///Установить позиции в заказ
     func setPositions(to orderId: String,
                       positions: [Position],
@@ -113,9 +120,9 @@ class DatabaseService {
     }
 
     ///Получить юзера из БД
-    func getUser(completion: @escaping (Result<UserModel, Error>) -> ()) {
+    func getUser(by userID: String? = nil, completion: @escaping (Result<UserModel, Error>) -> ()) {
 
-        userRef.document(AuthServices.shared.currentUser!.uid).getDocument { docSnapshot, error in
+        userRef.document(userID != nil ? userID! : AuthServices.shared.currentUser!.uid).getDocument { docSnapshot, error in
             guard let data = docSnapshot?.data() else { return }
 
             guard let userName = data["name"] as? String else { return }
@@ -126,6 +133,49 @@ class DatabaseService {
             let user = UserModel(id: id, name: userName, phoneNumber: phone, address: address)
 
             completion(.success(user)) //Возвращает юзера
+        }
+    }
+
+    ///Запись в БД нового продукта
+    func setProduct(_ product: Product, image: Data, completion: @escaping (Result<Product, Error>) -> ()) {
+
+        StorageService.shared.upload(id: product.id, image: image) { result in
+            switch result {
+            case .success(let sizeInfo):
+                print(sizeInfo)
+
+                self.productsRef.document(product.id).setData(product.representation) { error in
+                    if let error {
+                        completion(.failure(error))
+                    } else {
+                        completion(.success(product))
+                    }
+                }
+            case .failure(let failure):
+                completion(.failure(failure))
+            }
+        }
+    }
+    
+    ///Получить из БД продук
+    func getProducts(completion: @escaping (Result<[Product], Error>) -> ()) {
+        self.productsRef.getDocuments { querySnapshot, error in
+            guard let querySnapshot else {
+                if let error {
+                    completion(.failure(error))
+                }
+                return
+            }
+
+            let docs = querySnapshot.documents
+            var products = [Product]()
+
+            for doc in docs {
+                //Тут НУЖНО создать ПРОДУКТ через ДОКУМЕНТ (написать init через QueryDocumentSnapshot для Product)
+                guard let product = Product(doc: doc) else {return}
+                products.append(product)
+            }
+            completion(.success(products))
         }
     }
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CartViewModel: ObservableObject {
+final class CartViewModel: ObservableObject {
 
     static let shared = CartViewModel()
 
