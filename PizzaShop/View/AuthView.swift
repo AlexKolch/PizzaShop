@@ -18,7 +18,7 @@ struct AuthView: View {
 
     var body: some View {
         VStack(spacing: 20.0) {
-            Text(isAuth ? "Авторизаця" : "Регистрация")
+            Text(isAuth ? "Авторизация" : "Регистрация")
                 .padding()
                 .padding(.horizontal, 30)
                 .font(.title2.bold())
