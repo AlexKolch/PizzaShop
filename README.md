@@ -15,7 +15,7 @@ Completed tasks:
 * SwiftUI
 * MVVM
 * FirebaseAuth, FirebaseFirestore, FirebaseStorage
-* UIViewControllerRepresentable (import UIKti class)
+* UIViewControllerRepresentable 
 
 ---
 ![Image alt](https://github.com/AlexKolch/PizzaShop/blob/main/Screen/2.png)
