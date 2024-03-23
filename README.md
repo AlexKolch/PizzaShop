@@ -8,7 +8,7 @@ Completed tasks:
 4. UI made using SwiftUI
 5. Create and submit an order in Firebase
 6. Receiving an order from FirebaseFirestore
-7. Creating a new product by the admin and saving the product image in Firebase
+7. Creating a new product by the admin and saving the product image in FirebaseStorage
  
  ---
  Used in a project:
